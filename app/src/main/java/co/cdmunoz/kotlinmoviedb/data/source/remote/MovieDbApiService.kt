@@ -1,6 +1,7 @@
-package co.cdmunoz.kotlinmoviedb.api
+package co.cdmunoz.kotlinmoviedb.data.source.remote
 
 import co.cdmunoz.kotlinmoviedb.BuildConfig
+import co.cdmunoz.kotlinmoviedb.data.MoviesResponse
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
