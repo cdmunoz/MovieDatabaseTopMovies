@@ -1,7 +1,10 @@
 package co.cdmunoz.kotlinmoviedb.list
 
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.util.Log
+import co.cdmunoz.kotlinmoviedb.data.MovieItem
 import co.cdmunoz.kotlinmoviedb.data.MoviesResponse
 import co.cdmunoz.kotlinmoviedb.data.source.MovieDbRepository
 import co.cdmunoz.kotlinmoviedb.data.source.remote.MovieDbApiService
@@ -18,6 +21,10 @@ class MoviesDbViewModel : ViewModel() {
     private val movieDbRepository = MovieDbRepository(MovieDbApiService.create())
     lateinit var call: Call<MoviesResponse>
 
+    var moviesResult: MutableLiveData<List<MovieItem>> = MutableLiveData()
+
+    fun getMoviesResult(): LiveData<List<MovieItem>> = moviesResult
+
     fun loadMovies() {
 
         call = movieDbRepository.getMovies("2018", "df1b9abfde892d0d5407d6b602b349f2")
@@ -30,6 +37,7 @@ class MoviesDbViewModel : ViewModel() {
                 val moviesResponse = response.body()
                 val numberOfItems = moviesResponse?.results?.size
                 Log.i(TAG, "+++++++++++++++++ Size of results: $numberOfItems")
+                moviesResult.value = moviesResponse?.results
             }
         })
     }
