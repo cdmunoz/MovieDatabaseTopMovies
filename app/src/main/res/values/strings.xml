@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Top Movies</string>
+    <string name="movie_title_text">Movie Title</string>
+    <string name="release_date_lbl">Release date</string>
+    <string name="release_date_text">Release date</string>
+    <string name="vote_avg_lbl">Vote Avg</string>
+    <string name="default_vote_avg_value">0.0</string>
 </resources>

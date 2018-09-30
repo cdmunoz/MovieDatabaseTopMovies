@@ -12,6 +12,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
+        buildConfigField "String", "IMG_BASE_URL", "\"https://image.tmdb.org/t/p/w500/\""
     }
     buildTypes {
         release {
@@ -30,13 +31,15 @@ dependencies {
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation "com.android.support:recyclerview-v7:27.1.1"
 
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.4.0"
     implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
 
     //moshi
     implementation "com.squareup.moshi:moshi-kotlin:1.5.0"
-    implementation "com.squareup.moshi:moshi-adapters:1.6.0"
 
     //Lifecycle
     implementation "android.arch.lifecycle:extensions:1.1.1"

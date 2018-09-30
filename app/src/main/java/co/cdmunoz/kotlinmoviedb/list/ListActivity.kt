@@ -4,6 +4,8 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
 import co.cdmunoz.kotlinmoviedb.R
 import co.cdmunoz.kotlinmoviedb.data.MovieItem
 import kotlinx.android.synthetic.main.activity_list.*
@@ -15,6 +17,7 @@ class ListActivity : AppCompatActivity() {
     }
 
     lateinit var moviesDbViewModel: MoviesDbViewModel
+    private var moviesDbAdapter = MoviesDbAdapter(ArrayList())
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,14 +27,30 @@ class ListActivity : AppCompatActivity() {
         moviesDbViewModel = ViewModelProviders.of(this).get(MoviesDbViewModel::class.java)
         moviesDbViewModel.loadMovies()
 
+        initRecycler()
         initObservers()
+        loadData()
+    }
+
+    private fun initRecycler() {
+        val gridLayoutManager = GridLayoutManager(this, 1)
+        gridLayoutManager.orientation = RecyclerView.VERTICAL
+        movies_list.apply {
+            setHasFixedSize(true)
+            layoutManager = gridLayoutManager
+        }
     }
 
     private fun initObservers() {
-        moviesDbViewModel.getMoviesResult().observe(this, Observer<List<MovieItem>>{
-            if (it != null){
-                hello_text_view.text = "Items :::: ${it.toString()}"
+        moviesDbViewModel.getMoviesResult().observe(this, Observer<List<MovieItem>> {
+            if (it != null) {
+                moviesDbAdapter = MoviesDbAdapter(it)
+                movies_list.adapter = moviesDbAdapter
             }
         })
+    }
+
+    private fun loadData() {
+        moviesDbViewModel.loadMovies()
     }
 }

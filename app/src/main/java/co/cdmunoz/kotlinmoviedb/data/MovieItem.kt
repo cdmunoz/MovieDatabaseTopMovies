@@ -22,7 +22,7 @@ data class MovieItem(
         @Json(name = "release_date")
         val releaseDate: String? = null,
         @Json(name = "vote_average")
-        val voteAverage: Int? = null,
+        val voteAverage: Double? = null,
         @Json(name = "popularity")
         val popularity: Double? = null,
         @Json(name = "id")
