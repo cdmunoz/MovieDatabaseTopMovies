@@ -48,6 +48,7 @@ class ListActivity : AppCompatActivity() {
                 moviesDbAdapter = MoviesDbAdapter(it)
                 movies_list.adapter = moviesDbAdapter
             }
+            progress_bar.visibility = View.GONE
         })
     }
 
