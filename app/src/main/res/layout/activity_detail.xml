@@ -6,67 +6,74 @@
     android:layout_height="match_parent"
     tools:context=".detail.DetailActivity">
 
-    <ImageView
-        android:id="@+id/detail_poster"
-        android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher_round" />
-
     <ScrollView
+        android:id="@+id/container_scroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detail_poster">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/container_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="0dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="@id/container_scroll">
 
-            <TextView
-                android:id="@+id/detail_title"
+            <ImageView
+                android:id="@+id/detail_poster"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/ic_launcher_round" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/movie_title_text"
-                android:textSize="20sp"
-                android:textStyle="bold|italic" />
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/detail_poster">
 
-            <TextView
-                android:id="@+id/detail_overview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="@string/detail_overview"
-                android:textSize="18sp"
-                android:textStyle="italic" />
+                <TextView
+                    android:id="@+id/detail_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/movie_title_text"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic" />
 
-            <TextView
-                android:id="@+id/detail_release_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="@string/detail_overview"
-                android:textSize="18sp"
-                android:textStyle="italic" />
+                <TextView
+                    android:id="@+id/detail_overview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/detail_overview"
+                    android:textSize="18sp"
+                    android:textStyle="italic" />
 
-            <TextView
-                android:id="@+id/detail_vote_average"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:drawableEnd="@drawable/ic_star_votes"
-                android:drawablePadding="2dp"
-                android:text="@string/detail_overview"
-                android:textSize="18sp"
-                android:textStyle="italic" />
+                <TextView
+                    android:id="@+id/detail_release_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/detail_overview"
+                    android:textSize="18sp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/detail_vote_average"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:drawableEnd="@drawable/ic_star_votes"
+                    android:drawablePadding="2dp"
+                    android:text="@string/detail_overview"
+                    android:textSize="18sp"
+                    android:textStyle="italic" />
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
