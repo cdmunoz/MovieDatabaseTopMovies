@@ -12,6 +12,7 @@ import co.cdmunoz.kotlinmoviedb.utils.Utilities
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 class MoviesDbViewModel : ViewModel() {
 
@@ -23,11 +24,18 @@ class MoviesDbViewModel : ViewModel() {
     private val movieDbRepository: MovieDbRepository = MovieDbRepository(MovieDbApiService.create(),
             database.moviesDbDao())
 
+    private val context = MoviesDbApplication.instance
+
     lateinit var call: Call<MoviesResponse>
 
     fun loadMovies() {
         val isConnected = Utilities.isConnectionAvailable(MoviesDbApplication.instance)
-        if (isConnected) loadMoviesFromApi()
+        var hasApiData = Utilities.shouldGetDataFromApi(context)
+        if (isConnected && hasApiData) {
+            loadMoviesFromApi()
+            Utilities.putLongSharedPreferences(context, "pref_time_net_query",
+                    Calendar.getInstance().timeInMillis)
+        }
     }
 
     private fun loadMoviesFromApi() {
