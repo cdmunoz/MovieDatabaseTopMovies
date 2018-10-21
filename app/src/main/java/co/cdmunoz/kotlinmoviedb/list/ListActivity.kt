@@ -49,6 +49,7 @@ class ListActivity : AppCompatActivity() {
                 recyclerViewState = movies_list.layoutManager.onSaveInstanceState()
                 moviesDbAdapter = MoviesDbAdapter(it)
                 movies_list.adapter = moviesDbAdapter
+                movies_list.visibility = View.VISIBLE
                 movies_list.layoutManager.onRestoreInstanceState(recyclerViewState)
             }
             progress_bar.visibility = View.GONE
