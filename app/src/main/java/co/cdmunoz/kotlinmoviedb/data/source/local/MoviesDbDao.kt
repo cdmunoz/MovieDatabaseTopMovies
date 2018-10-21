@@ -10,7 +10,7 @@ import co.cdmunoz.kotlinmoviedb.data.MovieItem
 @Dao
 interface MoviesDbDao {
     @Query("SELECT * FROM movies ORDER BY vote_average DESC")
-    fun queryMovies(): LiveData<MovieItem>
+    fun queryMovies(): LiveData<List<MovieItem>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMovie(movieItem: MovieItem)

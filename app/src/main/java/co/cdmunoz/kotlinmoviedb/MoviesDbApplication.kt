@@ -1,18 +1,15 @@
 package co.cdmunoz.kotlinmoviedb
 
 import android.app.Application
-import android.arch.persistence.room.Room
-import co.cdmunoz.kotlinmoviedb.data.source.local.MoviesDatabase
-import co.cdmunoz.kotlinmoviedb.data.source.local.MoviesDbDao
 
-class MoviesDbApplication: Application() {
+class MoviesDbApplication : Application() {
     companion object {
-        lateinit var moviesDbDao: MoviesDbDao
+        lateinit var instance: MoviesDbApplication
+            private set
     }
+
     override fun onCreate() {
         super.onCreate()
-        moviesDbDao = createDatabase().moviesDbDao()
+        instance = this
     }
-    private fun createDatabase(): MoviesDatabase =
-            Room.databaseBuilder(this, MoviesDatabase::class.java, "movies_db").build()
 }

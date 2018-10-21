@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import co.cdmunoz.kotlinmoviedb.R
 import co.cdmunoz.kotlinmoviedb.data.MovieItem
 import kotlinx.android.synthetic.main.activity_list.*
@@ -42,7 +43,7 @@ class ListActivity : AppCompatActivity() {
     }
 
     private fun initObservers() {
-        moviesDbViewModel.getMoviesResult().observe(this, Observer<List<MovieItem>> {
+        moviesDbViewModel.getMovies().observe(this, Observer<List<MovieItem>> {
             if (it != null) {
                 moviesDbAdapter = MoviesDbAdapter(it)
                 movies_list.adapter = moviesDbAdapter
