@@ -14,4 +14,7 @@ interface MoviesDbDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMovie(movieItem: MovieItem)
+
+    @Query("DELETE FROM movies")
+    fun deleteAllMovies()
 }
