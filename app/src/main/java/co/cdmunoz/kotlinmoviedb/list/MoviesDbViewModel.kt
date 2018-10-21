@@ -8,6 +8,7 @@ import co.cdmunoz.kotlinmoviedb.data.MoviesResponse
 import co.cdmunoz.kotlinmoviedb.data.source.MovieDbRepository
 import co.cdmunoz.kotlinmoviedb.data.source.local.MoviesDatabase
 import co.cdmunoz.kotlinmoviedb.data.source.remote.MovieDbApiService
+import co.cdmunoz.kotlinmoviedb.utils.Utilities
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,7 +26,8 @@ class MoviesDbViewModel : ViewModel() {
     lateinit var call: Call<MoviesResponse>
 
     fun loadMovies() {
-        loadMoviesFromApi()
+        val isConnected = Utilities.isConnectionAvailable(MoviesDbApplication.instance)
+        if (isConnected) loadMoviesFromApi()
     }
 
     private fun loadMoviesFromApi() {
